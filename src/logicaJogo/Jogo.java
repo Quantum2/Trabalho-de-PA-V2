@@ -155,7 +155,7 @@ public class Jogo extends Observable implements Serializable {
         return pirTexto;
     }
     
-    public ArrayList<Integer> explora()   //vai ver em todos os quadrados a volta da nave, e liga o VISTO para true se houver algum com ele a False
+    public ArrayList<Integer> explora()   
     {
         ArrayList<Integer> pirTexto=new ArrayList();
         pirTexto.add(-1);
@@ -219,7 +219,7 @@ public class Jogo extends Observable implements Serializable {
         return pirTexto;
     }
     
-    public ArrayList<Integer> Repoe()    //Vai a todas as posicoes do mapa, e quando enconta um planeta repoe os recursos aleatoriamente
+    public ArrayList<Integer> Repoe()   
     {
         ArrayList<Integer> pirTexto=new ArrayList();
         ArrayList<Integer> aux=new ArrayList();
@@ -339,5 +339,37 @@ public class Jogo extends Observable implements Serializable {
         return pirTexto;        
     }
     
+    public Jogo Movimento(int opcao,int conta){
+        estado = estado.Movimento(opcao,conta);
+        setChanged();
+        notifyObservers();
+        return estado.J;
+    }
     
+    public Jogo Vende(int escolhavenda){
+        estado = estado.Vende(escolhavenda);
+        setChanged();
+        notifyObservers();
+        return estado.J;
+    }
+    
+    public Jogo Upgrade(int escolha){
+        estado = estado.Upgrade(escolha);
+        setChanged();
+        notifyObservers();
+        return estado.J;
+    }
+    
+    public Jogo Compra(int escolhacompra){
+        estado = estado.Compra(escolhacompra);
+        setChanged();
+        notifyObservers();
+        return estado.J;
+    }
+    
+    public void ganha(){
+        estado.ganha();
+        setChanged();
+        notifyObservers();
+    }
 }
