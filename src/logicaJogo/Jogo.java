@@ -11,6 +11,11 @@ import MW.Mapa.Planeta;
 import MW.Mapa.Vazio;
 import MW.Mapa.VazioNotDiscovered;
 import MW.Mapa.Wormhole;
+import MW.Recs.RecAmarelo;
+import MW.Recs.RecAzul;
+import MW.Recs.RecBranco;
+import MW.Recs.RecPreto;
+import MW.Recs.RecVermelho;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -214,5 +219,123 @@ public class Jogo extends Observable implements Serializable {
         return pirTexto;
     }
     
-    
+    public ArrayList<Integer> Repoe()    //Vai a todas as posicoes do mapa, e quando enconta um planeta repoe os recursos aleatoriamente
+    {
+        ArrayList<Integer> pirTexto=new ArrayList();
+        ArrayList<Integer> aux=new ArrayList();
+        pirTexto.add(-1);
+        pirTexto.add(-1);
+        int pos;
+        
+        for(int i=0;i<7;i++)
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(mapa[i][j].getCheck()==true)
+                {
+                    if("P".equals(mapa[i][j].getTexto()))
+                    {
+                        pos=getRandomDado();
+                        if("Branco".equals(mapa[i][j].getRecursos().get(0).getNome()))
+                        {                               
+                            if("Branco".equals(dado.get(pos)))                                
+                            {                                
+                                int x=jogador.getNave().getX();
+                                int y=jogador.getNave().getY();
+                                if(i==x && j==y && "P".equals(mapa[i][j].getTexto()))
+                                {
+                                    System.out.println("Carga apreendida");
+                                    jogador.setMoney(jogador.getMoney()-4);
+                                    if("Preto".equals(jogador.getNave().getCargo().get(0).getNome()))
+                                    {
+                                        jogador.getNave().setCargo(new RecBranco(), 0);
+                                    }
+                                    if("Preto".equals(jogador.getNave().getCargo().get(0).getNome()))
+                                    {
+                                        jogador.getNave().setCargo(new RecBranco(), 1);
+                                    }
+                                    if("Preto".equals(jogador.getNave().getCargo().get(0).getNome()))
+                                    {
+                                        jogador.getNave().setCargo(new RecBranco(), 2);
+                                    }
+                                }
+                            }                               
+                            if("Preto".equals(dado.get(pos)))                               
+                            {                                
+                                aux.addAll(geraPiratas());
+                                pirTexto.add(aux.get(0));
+                            }                               
+                            if("Azul".equals(dado.get(pos)))                               
+                            {                                
+                                mapa[i][j].getRecursos().add(0, new RecAzul());                                
+                            }                               
+                            if("Vermelho".equals(dado.get(pos)))                                
+                            {                                   
+                                mapa[i][j].getRecursos().add(0, new RecVermelho());                               
+                            }                               
+                            if("Amarelo".equals(dado.get(pos)))                               
+                            {                                   
+                                mapa[i][j].getRecursos().add(0, new RecAmarelo());                              
+                            }                                                           
+                        }                                   
+                                pos=getRandomDado();
+                                if("Branco".equals(mapa[i][j].getRecursos().get(1).getNome()))
+                                {                                      
+                                    if("Branco".equals(dado.get(pos)))                                      
+                                    {                                     
+                                        int x=jogador.getNave().getX();
+                                        int y=jogador.getNave().getY();
+                                        if(i==x && j==y && "P".equals(mapa[i][j].getTexto()))
+                                        {
+                                            System.out.println("Carga apreendida");
+                                            jogador.setMoney(jogador.getMoney()-4);
+                                            if("Preto".equals(jogador.getNave().getCargo().get(0).getNome()))
+                                            {
+                                                jogador.getNave().setCargo(new RecBranco(), 0);
+                                            }
+                                            if("Preto".equals(jogador.getNave().getCargo().get(0).getNome()))
+                                            {
+                                                jogador.getNave().setCargo(new RecBranco(), 1);
+                                            }
+                                            if("Preto".equals(jogador.getNave().getCargo().get(0).getNome()))
+                                            {
+                                                jogador.getNave().setCargo(new RecBranco(), 2);
+                                            }
+                                        }
+                                    }
+                                    if("Preto".equals(dado.get(pos)))                                      
+                                    {                                         
+                                        aux.addAll(geraPiratas());
+                                        pirTexto.add(aux.get(1));
+                                    }                                       
+                                    if("Azul".equals(dado.get(pos)))                                      
+                                    {                                          
+                                        mapa[i][j].getRecursos().add(1, new RecAzul());                                      
+                                    }                                      
+                                    if("Vermelho".equals(dado.get(pos)))                                      
+                                    {                                         
+                                        mapa[i][j].getRecursos().add(1, new RecVermelho());                                     
+                                    }                                      
+                                    if("Amarelo".equals(dado.get(pos)))                                     
+                                    {              
+                                        mapa[i][j].getRecursos().add(1, new RecAmarelo());                                     
+                                    }                                                                  
+                                }                                                                                                                              
+                    }
+                    
+                    if("X".equals(mapa[i][j].getTexto()))
+                    {
+                        if("Branco".equals(mapa[i][j].getRecurso().getNome()))
+                        {
+                            mapa[i][j].setRecurso(new RecPreto());
+                        }                                                                                                                       
+                    }
+                    
+                }
+            }
+        }       
+        setChanged();
+        notifyObservers();
+        return pirTexto;        
+    }
 }

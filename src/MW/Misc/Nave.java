@@ -55,8 +55,8 @@ public class Nave {
         return cargo;
     }
 
-    public void setCargo(ArrayList<Recs> cargo) {
-        this.cargo = cargo;
+    public void setCargo(Recs x, int pos) {
+        cargo.add(pos, x);
     }
     
 }
