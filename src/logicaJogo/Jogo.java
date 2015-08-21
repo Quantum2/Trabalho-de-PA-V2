@@ -372,4 +372,35 @@ public class Jogo extends Observable implements Serializable {
         setChanged();
         notifyObservers();
     }
+
+    public ArrayList<Integer> getXTrans() {
+        return XTrans;
+    }
+
+    public ArrayList<Integer> getYTrans() {
+        return YTrans;
+    }
+
+    public Mapa[][] getMapa() {
+        return mapa;
+    }
+
+    public Jogador getJogador() {
+        return jogador;
+    }
+    
+    public void fimAguardaCompra()
+    {
+        estado=new EsperaMovimento(this);
+    }
+    
+    public void fimAguardaMovimento()
+    {
+        estado=new EsperaVenda(this);
+    }
+    
+    public void fimAguardaVenda()
+    {
+        estado=new EsperaCompra(this);
+    }
 }
