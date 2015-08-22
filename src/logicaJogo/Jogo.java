@@ -389,17 +389,17 @@ public class Jogo extends Observable implements Serializable {
         return jogador;
     }
     
-    public void fimAguardaCompra()
+    public void fimEsperaCompra()
     {
         estado=new EsperaMovimento(this);
     }
     
-    public void fimAguardaMovimento()
+    public void fimEsperaMovimento()
     {
         estado=new EsperaVenda(this);
     }
     
-    public void fimAguardaVenda()
+    public void fimEsperaVenda()
     {
         estado=new EsperaCompra(this);
     }

@@ -5,7 +5,9 @@
  */
 package logicaJogo;
 
+import MW.Recs.RecBranco;
 import java.io.Serializable;
+import static java.lang.System.exit;
 
 /**
  *
@@ -19,42 +21,187 @@ public class EsperaCompra extends Estado implements Serializable {
 
     @Override
     public Estado Upgrade(int escolha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (escolha == 1) {
+            J.jogador.getNave().setPower(5);
+            J.jogador.setMoney(J.jogador.getMoney() - 4);
+        } else {
+            if (escolha == 2 && J.jogador.getMoney() - 5 > 0) {
+                J.jogador.getNave().getCargo().set(2, new RecBranco());
+            }
+        }
+        return new EsperaCompra(this.J);
     }
 
     @Override
     public Estado Compra(int escolhacompra) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int x=J.jogador.getNave().getX();
+        int y=J.jogador.getNave().getY();
+        
+        if("P".equals(J.mapa[y][x].getTexto()))
+        {
+                if(!"Branco".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                {
+                    if("Branco".equals(J.jogador.getNave().getCargo().get(0).getNome()))
+                    {
+                        if("Azul".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                        {
+                            J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(0));
+                        }else{
+                            if("Amarelo".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                            {
+                                J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(1));
+                            }else{
+                                if("Vermelho".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                                {
+                                    J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(2));
+                                }else{
+                                    if("Preto".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                                    {
+                                        J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(3));
+                                    }
+                                }
+                            }
+                        }
+                        J.jogador.getNave().getCargo().set(0,J.mapa[y][x].getRecursos().get(escolhacompra));
+                        J.mapa[y][x].getRecursos().set(escolhacompra,new RecBranco());       
+                    }else{
+                        if("Branco".equals(J.jogador.getNave().getCargo().get(1).getNome()))
+                        {
+                        if("Azul".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                        {
+                            J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(0));
+                        }else{
+                            if("Amarelo".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                            {
+                                J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(1));
+                            }else{
+                                if("Vermelho".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                                {
+                                    J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(2));
+                                }else{
+                                    if("Preto".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                                    {
+                                        J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(3));
+                                    }
+                                }
+                            }
+                        }
+                            J.jogador.getNave().getCargo().set(1,J.mapa[y][x].getRecursos().get(escolhacompra));
+                            J.mapa[y][x].getRecursos().set(escolhacompra,new RecBranco());
+                        }else{
+                            if("Branco".equals(J.jogador.getNave().getCargo().get(1).getNome()))
+                            {
+                        if("Azul".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                        {
+                            J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(0));
+                        }else{
+                            if("Amarelo".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                            {
+                                J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(1));
+                            }else{
+                                if("Vermelho".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                                {
+                                    J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(2));
+                                }else{
+                                    if("Preto".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome()))
+                                    {
+                                        J.jogador.setMoney(J.jogador.getMoney()-J.mapa[y][x].getCusto().get(3));
+                                    }
+                                }
+                            }
+                        }
+                                J.jogador.getNave().getCargo().set(2,J.mapa[y][x].getRecursos().get(escolhacompra));
+                                J.mapa[y][x].getRecursos().set(escolhacompra,new RecBranco());
+                            }else{
+                                System.out.println("Operacao Impossivel");
+                            }
+                        }
+                    }
+                }
+        }
+        
+        if("X".equals(J.mapa[y][x].getTexto()))
+        {
+                if("Branco".equals(J.jogador.getNave().getCargo().get(0).getNome()))
+                {
+                    if("Preto".equals(J.mapa[y][x].getRecurso().getNome()))
+                    {
+                        J.jogador.setMoney(J.jogador.getMoney()-1);
+                    }
+                J.jogador.getNave().getCargo().set(0,J.mapa[y][x].getRecurso());
+                J.mapa[y][x].setRecurso(new RecBranco());
+            }else{
+                    if("Branco".equals(J.jogador.getNave().getCargo().get(1).getNome()))
+                {
+                    if("Preto".equals(J.mapa[y][x].getRecurso().getNome()))
+                    {
+                        J.jogador.setMoney(J.jogador.getMoney()-1);
+                    }
+                J.jogador.getNave().getCargo().set(1, J.mapa[y][x].getRecurso());
+                J.mapa[y][x].setRecurso(new RecBranco());
+                
+                }else{
+                        if("Branco".equals(J.jogador.getNave().getCargo().get(2).getNome()))
+                {
+                    if("Preto".equals(J.mapa[y][x].getRecurso().getNome()))
+                    {
+                        J.jogador.setMoney(J.jogador.getMoney()-1);
+                    }
+                J.jogador.getNave().getCargo().set(2, J.mapa[y][x].getRecurso());
+                J.mapa[y][x].setRecurso(new RecBranco());
+                    }
+                }
+            }
+        }
+        
+        return new EsperaCompra(this.J);
     }
 
     @Override
     public Estado Movimento(int opcao, int conta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
 
     @Override
     public Estado Vende(int escolhavenda) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
 
     @Override
     public Estado fimEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new EsperaMovimento(this.J);
     }
 
     @Override
     public Estado Recomeca() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Jogo j=new Jogo();
+        return j.getEstado();
     }
 
     @Override
     public void fimJogo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        exit(0);
     }
 
     @Override
     public int ganha() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(J.jogador.getMoney()<-10)
+        {
+            return 1;
+        }
+        
+        for(int i=0;i<7;i++)
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(J.mapa[i][j].getCheck()==false)
+                {
+                   return 2;
+                }
+            }
+        }
+        
+        return 0;
     }
     
 }
