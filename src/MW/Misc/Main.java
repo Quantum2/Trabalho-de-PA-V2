@@ -1,21 +1,27 @@
+package MW.Misc;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package iu.texto;
+
+
+import iu.texto.Texto;
+import java.io.Serializable;
+import logicaJogo.Jogo;
 
 /**
  *
  * @author Rafael
  */
-public class MainT {
+public class Main implements Serializable {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Texto gestorText = new Texto(new Jogo());
+        gestorText.TJogar();
     }
-    
 }

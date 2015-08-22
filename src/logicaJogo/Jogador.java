@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author Rafael
  */
-class Jogador implements Serializable {
+public class Jogador implements Serializable {
     Nave nave;
     int money = 10;
 
