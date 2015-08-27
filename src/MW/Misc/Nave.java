@@ -8,13 +8,14 @@ package MW.Misc;
 import MW.Recs.RecBranco;
 import MW.Recs.RecCinzento;
 import MW.Recs.Recs;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Rafael
  */
-public class Nave {
+public class Nave implements Serializable{
     int x, y, power;
     ArrayList<Recs> cargo=new ArrayList();
 
