@@ -27,7 +27,7 @@ public abstract class Mapa implements Serializable{
     public Mapa(String L,Boolean check_nave,int x,int y)
     {
         this.texto=L;
-        this.nave=check_nave;
+        this.check=check_nave;
         this.x=x;
         this.y=y;
     }

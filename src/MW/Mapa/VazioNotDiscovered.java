@@ -14,10 +14,9 @@ import java.util.ArrayList;
  * @author Rafael
  */
 public class VazioNotDiscovered extends Mapa implements Serializable {
-    
-    public VazioNotDiscovered(int x,int y)
-    {
-        super(" ",true,x,y);
+ 
+    public VazioNotDiscovered(int x, int y) {
+        super(" ", true, x, y);
     }
 
     @Override
