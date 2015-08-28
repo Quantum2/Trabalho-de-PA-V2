@@ -403,50 +403,54 @@ public class Texto implements Serializable {
     public void mostraMapa() {
         LimpaJanela();
         System.out.println("\n\n\n");
-        for (int i = 0; i < 7; i++) {
-            for (int jj = 0; jj < 9; jj++) {
-                if (j.getMapa()[i][jj].getCheck() == false) {
+        for(int i=0;i<7;i++)
+        {
+            for(int k=0;k<9;k++)
+            {
+                if(j.getMapa()[i][k].getCheck()==false)
+                {
                     System.out.print("#  ");
-                } else {
-                    if (j.getJogador().getNave().getX() == jj && j.getJogador().getNave().getY() == i) {
-                        System.out.print(j.getMapa()[i][jj].getTexto() + "N ");
-                    } else {
-                        System.out.print(j.getMapa()[i][jj].getTexto() + "  ");
+                }else{
+                    if(j.getJogador().getNave().getX()==k&&j.getJogador().getNave().getY()==i)
+                    {
+                        System.out.print(j.getMapa()[i][k].getTexto()+ "N ");
+                    }else{
+                       System.out.print(j.getMapa()[i][k].getTexto()+ "  ");
                     }
                 }
             }
-            switch (i) {
-                case 0: {
-                    System.out.println("\t\t\t\tO teu dinheiro:" + j.getJogador().getMoney() + "\t\t\t\t#- Espaço nao Explorado");
+            switch(i)
+            {
+                case 0:{
+                    System.out.println("\t\t\t\tO teu dinheiro:"+ j.getJogador().getMoney()+ "\t\t\t\t#- Espaço nao Explorado");
                     break;
                 }
-                case 1: {
-                    System.out.println("\t\t\t\tA tua carga : " + j.getJogador().getNave().getCargo().get(0).getNome() + "/" + j.getJogador().getNave().getCargo().get(1).getNome() + "/" + j.getJogador().getNave().getCargo().get(2).getNome() + "\t\t_ - Espaço Explorado");
+                case 1:{
+                    System.out.println("\t\t\t\tA tua carga : "+j.getJogador().getNave().getCargo().get(0).getNome()+"/"+j.getJogador().getNave().getCargo().get(1).getNome()+"/"+j.getJogador().getNave().getCargo().get(2).getNome()+ "\t\t_ - Espaço Explorado");
                     break;
                 }
-                case 2: {
+                case 2:{
                     System.out.println("\t\t\t\t \t\t\t\t\t\tP - Planetas");
                     break;
                 }
-                case 3: {
+                case 3:{
                     System.out.println("\t\t\t\t \t\t\t\t\t\tX - Planeta de Piratas");
                     break;
                 }
-                case 4: {
+                case 4:{
                     System.out.println("\t\t\t\t \t\t\t\t\t\tW - WormHole");
                     break;
                 }
-                case 5: {
+                case 5:{
                     System.out.println("\t\t\t\t \t\t\t\t\t\tN - Nave");
                     break;
                 }
-                case 6: {
+                case 6:{
                     System.out.println("\t\t\t\t \t\t\t\t\t\t");
                     break;
-                }
+                }                
             }
         }
-
     }
 
     public void carregar() {

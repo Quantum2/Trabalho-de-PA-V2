@@ -5,6 +5,7 @@
  */
 package MW.Mapa;
 
+import MW.Recs.RecBranco;
 import MW.Recs.Recs;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ public class Planeta extends Mapa implements Serializable {
     public Planeta(int x,int y)
     {
         super("P",false,x,y);
+        Recs.add(new RecBranco());
+        Recs.add(new RecBranco());
     }
     
     @Override

@@ -17,7 +17,7 @@ public class VazioNotDiscovered extends Mapa implements Serializable {
     
     public VazioNotDiscovered(int x,int y)
     {
-        super(" ",false,x,y);
+        super(" ",true,x,y);
     }
 
     @Override
