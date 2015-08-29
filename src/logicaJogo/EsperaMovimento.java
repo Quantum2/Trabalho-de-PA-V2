@@ -7,6 +7,7 @@ package logicaJogo;
 
 import java.io.Serializable;
 import static java.lang.System.exit;
+import java.util.Random;
 
 /**
  *
@@ -33,7 +34,20 @@ public class EsperaMovimento extends Estado implements Serializable {
         int x,y;
         x=J.jogador.getNave().getX();
         y=J.jogador.getNave().getY();
-        
+       
+        if (opcao == 0) {
+            Random rn = new Random();
+            int x_rand, y_rand;
+
+            do {
+                x_rand = rn.nextInt(9);
+                y_rand = rn.nextInt(7);
+            }while(y+1<7 && J.mapa[y_rand][x_rand].getCheck()==false && !"_".equals(J.mapa[y_rand][x_rand].getTexto()));
+            
+            J.jogador.getNave().setY(y_rand);
+            J.jogador.getNave().setX(x_rand);
+            J.jogador.setMoney(J.jogador.getMoney()-1);
+        }
         if(opcao==1)
         {
             if(y+1<7 && J.mapa[y+1][x].getCheck()==true && !" ".equals(J.mapa[y+1][x].getTexto()))

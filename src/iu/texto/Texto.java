@@ -317,6 +317,8 @@ public class Texto implements Serializable {
         Scanner sc2 = new Scanner(System.in);
         x = j.getJogador().getNave().getX();
         y = j.getJogador().getNave().getY();
+        
+        System.out.println("\n0-Warp !");
 
         if (y + 1 < 7 && j.getMapa()[y + 1][x].getCheck() == true && !" ".equals(j.getMapa()[y + 1][x].getTexto())) {
             System.out.println("\n1-Avançar para baixo");
@@ -358,7 +360,7 @@ public class Texto implements Serializable {
         do {
             do {
                 opcao = sc2.nextInt();
-            } while (opcao < 1 && opcao > 9);
+            } while (opcao < 0 && opcao > 9);
             if ("W".equals(j.getMapa()[y][x].getTexto()) && opcao == 9) {
                 while (conta < 4) {
                     if (j.getMapa()[j.getYTrans().get(conta)][j.getXTrans().get(conta)].getCheck() == true) {
@@ -375,7 +377,7 @@ public class Texto implements Serializable {
 
             j.setEstado(j.getEstado().Movimento(opcao, conta));
             j.setEstado(j.getEstado().fimEstado());
-        } while (opcao < 1 && opcao > 9);
+        } while (opcao < 0 && opcao > 9);
     }
 
     void LimpaJanela() {
