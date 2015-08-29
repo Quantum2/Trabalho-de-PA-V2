@@ -68,6 +68,7 @@ public class Texto implements Serializable {
             }
             case 2: {
                 carregar();
+                mostraMapa();
                 break;
             }
             case 3: {
@@ -122,8 +123,6 @@ public class Texto implements Serializable {
                         } while (opcao2 < 1 && opcao2 > 3);
                         opcao2 = opcao2 - 1;
                         j.setEstado(j.getEstado().Vende(opcao2));
-                        j.setEstado(j.getEstado().fimEstado());
-                    }else if(opcao == 2){
                         j.setEstado(j.getEstado().fimEstado());
                     }
                 } while (opcao != 2);
@@ -180,8 +179,6 @@ public class Texto implements Serializable {
                         }
                     }
                 }
-            }else if(opcao == 2){
-                //j.setEstado(j.getEstado().fimEstado());
             }
 
             if ("X".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto())) {
@@ -200,12 +197,11 @@ public class Texto implements Serializable {
                         opcao2 = opcao2 - 1;
                         j.setEstado(j.getEstado().Vende(opcao2));
                         j.setEstado(j.getEstado().fimEstado());
-                    }else if(opcao == 2){
-                        j.setEstado(j.getEstado().fimEstado());
                     }
                 } while (opcao != 2);
 
             }
+            j.setEstado(j.getEstado().fimEstado());
         } else {
             j.setEstado(j.getEstado().fimEstado());
         }
