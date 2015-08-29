@@ -34,6 +34,8 @@ public class Texto implements Serializable {
 
     public void TJogar() {
         int i = 0;
+        
+        LimpaJanela();
         while (true) {
             if (i == 0) {
                 comecajogo();
