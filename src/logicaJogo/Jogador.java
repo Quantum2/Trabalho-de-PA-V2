@@ -6,6 +6,7 @@
 package logicaJogo;
 
 import MW.Misc.Nave;
+import ai.naveInimiga;
 import java.io.Serializable;
 
 /**
@@ -14,6 +15,7 @@ import java.io.Serializable;
  */
 public class Jogador implements Serializable {
     Nave nave;
+    naveInimiga enemie;
     int money = 10;
 
     public Jogador() {
@@ -34,5 +36,13 @@ public class Jogador implements Serializable {
 
     public void setNave(Nave nave) {
         this.nave = nave;
+    }
+
+    public naveInimiga getEnemie() {
+        return enemie;
+    }
+
+    public void setEnemie(naveInimiga enemie) {
+        this.enemie = enemie;
     }
 }

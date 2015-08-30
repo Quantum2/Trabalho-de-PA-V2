@@ -24,7 +24,8 @@ import logicaJogo.Jogo;
  *
  * @author Rafael
  */
-public class FrameLayout extends JFrame{
+public class FrameLayout extends JFrame {
+
     private Container cp;
     private JPanel game;
     private Jogo jogo;
@@ -32,11 +33,11 @@ public class FrameLayout extends JFrame{
     private CardLayout cardManager;
     private PainelJogo painelJogo;
     private Texto t;
-    
-    public FrameLayout(/*Jogo jogo*/){
+
+    public FrameLayout(/*Jogo jogo*/) {
         super("Trabalho de PA");
-	setVisible(true);
-	this.setSize(1370, 734);
+        setVisible(true);
+        this.setSize(1370, 734);
         this.setMinimumSize(new Dimension(1370, 734));
         ImageIcon img = new ImageIcon("./imagens/background.jpg");
         this.setIconImage(img.getImage());
@@ -46,20 +47,20 @@ public class FrameLayout extends JFrame{
         cardManager.show(game, "menu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         repaint();
-        validate();   
+        validate();
     }
 
     protected void criarObjGraf() {
         game = new JPanel();
-        janelaPrincipal = new JanelaPrincipal(jogo,this);
+        janelaPrincipal = new JanelaPrincipal(jogo, this);
     }
 
     protected void disporVista() {
         cardManager = new CardLayout();
         cp.add(game, BorderLayout.CENTER);
         game.setLayout(cardManager);
-        
-        game.add(janelaPrincipal,"menu");
+
+        game.add(janelaPrincipal, "menu");
         game.addMouseListener(new ListenerClique());
         janelaPrincipal.getB1().addActionListener(new ListenerJogo());
         janelaPrincipal.getB2().addActionListener(new ListenerCarregarJogo());
@@ -77,22 +78,23 @@ public class FrameLayout extends JFrame{
         }
 
     }
-    
-    class ListenerCarregarJogo implements ActionListener { 
+
+    class ListenerCarregarJogo implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            t=new Texto(jogo);
+            t = new Texto(jogo);
             t.carregar();
-            jogo=t.getJ();
+            jogo = t.getJ();
             jogo.setEstado(new EsperaMovimento(jogo));
-            painelJogo = new PainelJogo(jogo,cardManager,game);
+            painelJogo = new PainelJogo(jogo, cardManager, game);
             janelaPrincipal.setJogo(jogo);
-            game.add(painelJogo,"jogo");
+            game.add(painelJogo, "jogo");
             cardManager.show(game, "jogo");
         }
     }
 
-    class ListenerJogo implements ActionListener { 
+    class ListenerJogo implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -107,5 +109,17 @@ public class FrameLayout extends JFrame{
             cardManager.show(game, "jogo");
         }
 
+    }
+
+    public JPanel getGame() {
+        return game;
+    }
+
+    public CardLayout getCardManager() {
+        return cardManager;
+    }
+
+    public JanelaPrincipal getJanelaPrincipal() {
+        return janelaPrincipal;
     }
 }
