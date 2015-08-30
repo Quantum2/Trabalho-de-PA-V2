@@ -57,4 +57,28 @@ class JanelaPrincipal extends JPanel {
     void setJogo(Jogo jogo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public JButton getB1() {
+        return b1;
+    }
+
+    public void setB1(JButton b1) {
+        this.b1 = b1;
+    }
+
+    public JButton getB2() {
+        return b2;
+    }
+
+    public void setB2(JButton b2) {
+        this.b2 = b2;
+    }
+
+    public JButton getB3() {
+        return b3;
+    }
+
+    public void setB3(JButton b3) {
+        this.b3 = b3;
+    }
 }

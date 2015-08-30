@@ -77,8 +77,22 @@ public class FrameLayout extends JFrame{
         }
 
     }
+    
+    class ListenerCarregarJogo implements ActionListener { 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            t=new Texto(jogo);
+            t.carregar();
+            jogo=t.getJ();
+            jogo.setEstado(new EsperaMovimento(jogo));
+            painelJogo = new PainelJogo(jogo,cardManager,game);
+            janelaPrincipal.setJogo(jogo);
+            game.add(painelJogo,"jogo");
+            cardManager.show(game, "jogo");
+        }
+    }
 
-    class ListenerJogo implements ActionListener { //listener do botão novo jogo
+    class ListenerJogo implements ActionListener { 
 
         @Override
         public void actionPerformed(ActionEvent e) {
