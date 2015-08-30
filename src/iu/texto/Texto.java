@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import logicaJogo.EsperaCompra;
+import logicaJogo.EsperaMovimento;
+import logicaJogo.EsperaVenda;
 import logicaJogo.Jogo;
 
 /**
@@ -109,6 +112,11 @@ public class Texto implements Serializable {
             mostraAtaquePirata(pirTexto);
         }
         mostraMapa();
+        
+        //Apenas para debug, arranjar maneira de remover isto na versao final, normalmente chamado por causa de saves mal feitos
+        if (!(j.getEstado() instanceof EsperaVenda)) {
+            j.setEstado(new EsperaVenda(j));
+        }
 
         if ("P".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto()) || "X".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto())) {
             if ("P".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto())) {
@@ -125,7 +133,7 @@ public class Texto implements Serializable {
                         } while (opcao2 < 1 && opcao2 > 3);
                         opcao2 = opcao2 - 1;
                         j.setEstado(j.getEstado().Vende(opcao2));
-                        j.setEstado(j.getEstado().fimEstado());
+                        
                     }
                 } while (opcao != 2);
             }
@@ -143,12 +151,12 @@ public class Texto implements Serializable {
                     } while (opcao < 1 && opcao > 2);
                     if (opcao == 1 && j.getJogador().getMoney() - 4 > 0) {
                         j.setEstado(j.getEstado().Upgrade(opcao));
-                        j.setEstado(j.getEstado().fimEstado());
+                        
                         System.out.println("Sucesso|");
                     } else {
                         if (opcao == 2 && j.getJogador().getMoney() - 5 > 0) {
                             j.setEstado(j.getEstado().Upgrade(opcao));
-                            j.setEstado(j.getEstado().fimEstado());
+                            
                             System.out.println("Sucesso|");
                         } else {
                             System.out.println("Impossivel");
@@ -162,7 +170,7 @@ public class Texto implements Serializable {
                         } while (opcao < 1 && opcao > 2);
                         if (opcao == 1) {
                             j.setEstado(j.getEstado().Upgrade(opcao));
-                            j.setEstado(j.getEstado().fimEstado());
+                            
                             System.out.println("Sucesso|");
                         }
                     } else {
@@ -173,7 +181,7 @@ public class Texto implements Serializable {
                             } while (opcao < 1 && opcao > 2);
                             if (opcao == 1) {
                                 j.setEstado(j.getEstado().Upgrade(opcao));
-                                j.setEstado(j.getEstado().fimEstado());
+                                
                                 System.out.println("Sucesso|");
                             }
                         } else {
@@ -198,7 +206,7 @@ public class Texto implements Serializable {
                         } while (opcao2 < 1 && opcao2 > 3);
                         opcao2 = opcao2 - 1;
                         j.setEstado(j.getEstado().Vende(opcao2));
-                        j.setEstado(j.getEstado().fimEstado());
+                        
                     }
                 } while (opcao != 2);
 
@@ -224,7 +232,7 @@ public class Texto implements Serializable {
                         } while (opcao2 < 1 && opcao2 > 2);
                         opcao2 = opcao2 - 1;
                         j.setEstado(j.getEstado().Compra(opcao2));
-                        j.setEstado(j.getEstado().fimEstado());
+                       
                     }
                 } while (opcao != 2);
 
@@ -241,12 +249,12 @@ public class Texto implements Serializable {
                         } while (opcao < 1 && opcao > 2);
                         if (opcao == 1 && j.getJogador().getMoney() - 4 > 0) {
                             j.setEstado(j.getEstado().Upgrade(opcao));
-                            j.setEstado(j.getEstado().fimEstado());
+                            
                             System.out.println("Sucesso|");
                         } else {
                             if (opcao == 2 && j.getJogador().getMoney() - 5 > 0) {
                                 j.setEstado(j.getEstado().Upgrade(opcao));
-                                j.setEstado(j.getEstado().fimEstado());
+                                
                                 System.out.println("Sucesso|");
                             } else {
                                 System.out.println("Impossivel");
@@ -260,7 +268,7 @@ public class Texto implements Serializable {
                             } while (opcao < 1 && opcao > 2);
                             if (opcao == 1) {
                                 j.setEstado(j.getEstado().Upgrade(opcao));
-                                j.setEstado(j.getEstado().fimEstado());
+                                
                                 System.out.println("Sucesso|");
                             }
                         } else {
@@ -271,16 +279,14 @@ public class Texto implements Serializable {
                                 } while (opcao < 1 && opcao > 2);
                                 if (opcao == 1) {
                                     j.setEstado(j.getEstado().Upgrade(opcao));
-                                    j.setEstado(j.getEstado().fimEstado());
+                                    
                                     System.out.println("Sucesso|");
                                 }
                             } else {
                                 System.out.println("Impossivel");
                             }
                         }
-                    }
-                }else if(opcao == 2){
-                    j.setEstado(j.getEstado().fimEstado());
+                    }   
                 }
             }
 
@@ -293,15 +299,11 @@ public class Texto implements Serializable {
                     if (opcao == 1) {
                         System.out.println("Precos do planeta: Preto:1");
                         System.out.println("\nEscolha o Recurso a comprar(carga branco e cinzenta nao pode ser compradas) 1-" + j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getRecurso().getNome());
-
                         do {
                             opcao2 = sc.nextInt();
                         } while (opcao2 < 1 && opcao2 > 2);
                         opcao2 = opcao2 - 1;
                         j.setEstado(j.getEstado().Compra(opcao2));
-                        j.setEstado(j.getEstado().fimEstado());
-                    }else if(opcao == 2){
-                        j.setEstado(j.getEstado().fimEstado());
                     }
                 } while (opcao != 2);
                 g = j.getEstado().ganha();
@@ -311,6 +313,7 @@ public class Texto implements Serializable {
                     exit(0);
                 }
             }
+            j.setEstado(j.getEstado().fimEstado());
         } else {
             g = j.getEstado().ganha();
             if (g == 1) {
@@ -321,6 +324,8 @@ public class Texto implements Serializable {
             j.setEstado(j.getEstado().fimEstado());
         }
         mostraMapa();
+        
+        
 
         Scanner sc2 = new Scanner(System.in);
         x = j.getJogador().getNave().getX();
