@@ -94,7 +94,6 @@ class PainelJogo extends JPanel implements Observer {
 
             try {
                 Image iconeDaJanela = ImageIO.read(new File("./imagens/background.jpg"));
-                //g.drawImage(iconeDaJanela, 0, 0, this); 
                 Graphics2D g2d = (Graphics2D) g.create();
                 g2d.drawImage(iconeDaJanela, 0, 0, this.getWidth(), this.getHeight(), null);
                 g2d.dispose();
@@ -107,7 +106,7 @@ class PainelJogo extends JPanel implements Observer {
     public PainelJogo(Jogo jogo, CardLayout cardManager, JPanel game) {
         this.cardManager = cardManager;
         this.game = game;
-        System.out.println("entrei no jogo");
+        System.out.println("Game starting...");
         this.jogo = jogo;
 
         jogo.addObserver(this);
@@ -356,55 +355,55 @@ class PainelJogo extends JPanel implements Observer {
                         } else {
                             Celula cl = new Celula("./imagens/Wormhole.png");
                             if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i + 1) {
-                                //cl.position = 7;
+                                
                                 cl.position = 8;
 
                             } else {
 
                                 if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i) {
 
-                                    //cl.position = 2;
+                                   
                                     cl.position = 4;
 
                                 } else {
 
                                     if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i - 1) {
 
-                                        //cl.position = 8;
+                                        
                                         cl.position = 6;
 
                                     } else {
 
                                         if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i + 1) {
 
-                                            cl.position = 2;//
+                                            cl.position = 2;
 
                                         } else {
 
                                             if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i - 1) {
 
-                                                //cl.position = 4;
+                                              
                                                 cl.position = 1;
 
                                             } else {
 
                                                 if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i + 1) {
 
-                                                    //cl.position = 5;
+                                                   
                                                     cl.position = 7;
 
                                                 } else {
 
                                                     if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i) {
 
-                                                        //cl.position = 1;
+                                                        
                                                         cl.position = 3;
 
                                                     } else {
 
                                                         if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i - 1) {
 
-                                                            //cl.position = 6;
+                                                            
                                                             cl.position = 5;
 
                                                         } else {

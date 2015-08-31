@@ -44,6 +44,8 @@ public class EsperaMovimento extends Estado implements Serializable {
                 y_rand = rn.nextInt(7);
             }while(J.mapa[y_rand][x_rand].getCheck()==true && !"_".equals(J.mapa[y_rand][x_rand].getTexto()));
             
+            J.mapa[y_rand][x_rand].setCheck(Boolean.TRUE);
+            
             J.jogador.getNave().setY(y_rand);
             J.jogador.getNave().setX(x_rand);
             J.jogador.setMoney(J.jogador.getMoney()-1);
@@ -140,6 +142,33 @@ public class EsperaMovimento extends Estado implements Serializable {
             }else{
                 opcao=0;
             }
+        
+        //Fase da nave inimiga
+        Random rn = new Random();
+        int rand_x, rand_y, chooser;
+        
+        if (J.jogador.getEnemie().getLargada() == 0) {
+            do {
+                rand_y = rn.nextInt(7);
+                rand_x = rn.nextInt(9);
+            } while (!"X".equals(J.mapa[rand_y][rand_x].getTexto()));
+            J.jogador.enemie.setX(rand_x);
+            J.jogador.enemie.setY(rand_y);
+            J.jogador.enemie.setLargada(1);
+        }else{
+            chooser = rn.nextInt(5);
+            
+            if(chooser == 1 && !" ".equals(J.mapa[J.jogador.enemie.getY()][J.jogador.enemie.getX() + 1].getTexto())){
+                J.jogador.enemie.setX(J.jogador.enemie.getX() + 1);
+            }else if(chooser == 2 && !" ".equals(J.mapa[J.jogador.enemie.getY() + 1][J.jogador.enemie.getX()].getTexto())){
+                J.jogador.enemie.setY(J.jogador.enemie.getY() + 1);
+            }else if(chooser == 3 && !" ".equals(J.mapa[J.jogador.enemie.getY()][J.jogador.enemie.getX() - 1].getTexto())){
+                J.jogador.enemie.setX(J.jogador.enemie.getX() - 1);
+            }else if(chooser == 4 && !" ".equals(J.mapa[J.jogador.enemie.getY() - 1][J.jogador.enemie.getX()].getTexto())){
+                J.jogador.enemie.setY(J.jogador.enemie.getY() - 1);
+            }
+        }
+
         return new EsperaMovimento(this.J);
     }
 

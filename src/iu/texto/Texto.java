@@ -425,12 +425,15 @@ public class Texto implements Serializable {
                 if(j.getMapa()[i][k].getCheck()==false)
                 {
                     System.out.print("#  ");
-                }else{
-                    if(j.getJogador().getNave().getX()==k&&j.getJogador().getNave().getY()==i)
-                    {
-                        System.out.print(j.getMapa()[i][k].getTexto()+ "N ");
-                    }else{
-                       System.out.print(j.getMapa()[i][k].getTexto()+ "  ");
+                }else {
+                    if (j.getJogador().getNave().getX() == k && j.getJogador().getNave().getY() == i) {
+                        System.out.print(j.getMapa()[i][k].getTexto() + "N ");
+                    } else if (j.getJogador().getEnemie().getX() == k && j.getJogador().getNave().getY() == i && j.getJogador().getNave().getX() == k && j.getJogador().getNave().getY() == i) {
+                        System.out.print(j.getMapa()[i][k].getTexto() + "Nn ");
+                    } else if (j.getJogador().getEnemie().getX() == k && j.getJogador().getNave().getY() == i) {
+                        System.out.print(j.getMapa()[i][k].getTexto() + "n ");
+                    } else {
+                        System.out.print(j.getMapa()[i][k].getTexto() + "  ");
                     }
                 }
             }

@@ -20,6 +20,7 @@ public class Jogador implements Serializable {
 
     public Jogador() {
         nave=new Nave(0,6);
+        enemie = new naveInimiga(4, 4);
     }
 
     public int getMoney() {

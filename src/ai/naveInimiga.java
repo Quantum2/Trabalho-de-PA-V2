@@ -5,8 +5,6 @@
  */
 package ai;
 
-import MW.Recs.RecBranco;
-import MW.Recs.RecCinzento;
 import MW.Recs.Recs;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,15 +16,11 @@ import java.util.ArrayList;
 public class naveInimiga implements Serializable {
 
     int x, y, power, largada;
-    ArrayList<Recs> cargo = new ArrayList();
 
     public naveInimiga(int i, int j) {
         x = i;
         y = j;
         power = 3;
-        cargo.add(new RecBranco());
-        cargo.add(new RecBranco());
-        cargo.add(new RecCinzento());
     }
 
     public int getX() {
@@ -53,11 +47,11 @@ public class naveInimiga implements Serializable {
         this.power = power;
     }
 
-    public ArrayList<Recs> getCargo() {
-        return cargo;
+    public int getLargada() {
+        return largada;
     }
 
-    public void setCargo(Recs x, int pos) {
-        cargo.add(pos, x);
+    public void setLargada(int largada) {
+        this.largada = largada;
     }
 }
