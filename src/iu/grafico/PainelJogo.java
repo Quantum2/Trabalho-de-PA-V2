@@ -15,6 +15,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -337,7 +339,380 @@ class PainelJogo extends JPanel implements Observer {
     }
 
     void mapa() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        int conta = 0;
+        boxCartas.setLayout(new GridLayout(7, 9));
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 9; j++) {
+                if ("W".equals(jogo.getMapa()[i][j].getTexto())) {
+                    if (jogo.getMapa()[i][j].getCheck() == false) {
+                        boxCartas.add(new Celula("./imagens/espacoporexplorar.png"));
+                    } else {
+                        if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i) {
+                            Celula cl = new Celula("./imagens/Wormhole.png");
+                            Celula nave = new Celula("./imagens/nave.png");
+                            nave.setPreferredSize(new Dimension(45, 35));
+                            cl.add(nave);
+                            boxCartas.add(cl);
+                        } else {
+                            Celula cl = new Celula("./imagens/Wormhole.png");
+                            if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i + 1) {
+                                //cl.position = 7;
+                                cl.position = 8;
+
+                            } else {
+
+                                if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i) {
+
+                                    //cl.position = 2;
+                                    cl.position = 4;
+
+                                } else {
+
+                                    if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                        //cl.position = 8;
+                                        cl.position = 6;
+
+                                    } else {
+
+                                        if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                            cl.position = 2;//
+
+                                        } else {
+
+                                            if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                                //cl.position = 4;
+                                                cl.position = 1;
+
+                                            } else {
+
+                                                if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                                    //cl.position = 5;
+                                                    cl.position = 7;
+
+                                                } else {
+
+                                                    if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i) {
+
+                                                        //cl.position = 1;
+                                                        cl.position = 3;
+
+                                                    } else {
+
+                                                        if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                                            //cl.position = 6;
+                                                            cl.position = 5;
+
+                                                        } else {
+                                                            cl.position = 9;
+                                                            conta++;
+                                                        }
+                                                    }
+
+                                                }
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+                            }
+                            cl.addMouseListener(new ListenerMovimento(cl.position, conta));
+                            boxCartas.add(cl);
+                        }
+                    }
+                }
+                if ("_".equals(jogo.getMapa()[i][j].getTexto())) {
+                    if (jogo.getMapa()[i][j].getCheck() == false) {
+
+                        boxCartas.add(new Celula("./imagens/espacoporexplorar.png"));
+                    } else {
+                        if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i) {
+                            Celula cl = new Celula("./imagens/EspacoExplorado.png");
+                            Celula nave = new Celula("./imagens/nave.png");
+                            nave.setPreferredSize(new Dimension(45, 35));
+                            cl.add(nave);
+                            boxCartas.add(cl);
+                        } else {
+
+                            Celula cl = new Celula("./imagens/EspacoExplorado.png");
+                            if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i + 1) {
+                                //cl.position = 7;
+                                cl.position = 8;
+
+                            } else {
+
+                                if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i) {
+
+                                    cl.position = 4;
+
+                                } else {
+
+                                    if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                        cl.position = 6;
+
+                                    } else {
+
+                                        if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                            cl.position = 2;
+
+                                        } else {
+
+                                            if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                                cl.position = 1;
+
+                                            } else {
+
+                                                if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                                    cl.position = 7;
+
+                                                } else {
+
+                                                    if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i) {
+
+                                                        cl.position = 3;
+
+                                                    } else {
+
+                                                        if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                                            cl.position = 5;
+
+                                                        }
+                                                    }
+
+                                                }
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+                            }
+                            cl.addMouseListener(new ListenerMovimento(cl.position, 0));
+                            boxCartas.add(cl);
+                        }
+                    }
+                }
+                if ("P".equals(jogo.getMapa()[i][j].getTexto())) {
+                    if (jogo.getMapa()[i][j].getCheck() == false) {
+                        boxCartas.add(new Celula("./imagens/espacoporexplorar.png"));
+                    } else {
+                        if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i) {
+                            Celula cl = new Celula("./imagens/Arrakis.png");
+                            Celula nave = new Celula("./imagens/nave.png");
+                            nave.setPreferredSize(new Dimension(45, 35));
+                            cl.add(nave);
+                            boxCartas.add(cl);
+                        } else {
+                            Celula cl = new Celula("./imagens/Arrakis.png");
+                            if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                cl.position = 8;
+
+                            } else {
+
+                                if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i) {
+
+                                    cl.position = 4;
+
+                                } else {
+
+                                    if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                        cl.position = 6;
+
+                                    } else {
+
+                                        if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                            cl.position = 2;
+
+                                        } else {
+
+                                            if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                                cl.position = 1;
+
+                                            } else {
+
+                                                if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                                    cl.position = 7;
+
+                                                } else {
+
+                                                    if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i) {
+
+                                                        cl.position = 3;
+
+                                                    } else {
+
+                                                        if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                                            //cl.position = 6;
+                                                            cl.position = 5;
+
+                                                        }
+                                                    }
+
+                                                }
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+                            }
+                            cl.addMouseListener(new ListenerMovimento(cl.position, 0));
+                            boxCartas.add(cl);
+                        }
+                    }
+                }
+                if ("X".equals(jogo.getMapa()[i][j].getTexto())) {
+                    if (jogo.getMapa()[i][j].getCheck() == false) {
+                        boxCartas.add(new Celula("./imagens/espacoporexplorar.png"));
+                    } else {
+                        if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i) {
+                            Celula cl = new Celula("./imagens/Asperta.png");
+                            Celula nave = new Celula("./imagens/nave.png");
+                            nave.setPreferredSize(new Dimension(45, 35));
+                            cl.add(nave);
+                            boxCartas.add(cl);
+                        } else {
+                            Celula cl = new Celula("./imagens/Asperta.png");
+                            if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                cl.position = 8;
+
+                            } else {
+
+                                if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i) {
+
+                                    cl.position = 4;
+
+                                } else {
+
+                                    if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                        cl.position = 6;
+
+                                    } else {
+
+                                        if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                            cl.position = 2;
+
+                                        } else {
+
+                                            if (jogo.getJogador().getNave().getX() == j && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                                cl.position = 1;
+
+                                            } else {
+
+                                                if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i + 1) {
+
+                                                    cl.position = 7;
+
+                                                } else {
+
+                                                    if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i) {
+
+                                                        cl.position = 3;
+
+                                                    } else {
+
+                                                        if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i - 1) {
+
+                                                            cl.position = 5;
+
+                                                        }
+                                                    }
+
+                                                }
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+                            }
+                            cl.addMouseListener(new ListenerMovimento(cl.position, 0));
+                            boxCartas.add(cl);
+                        }
+                    }
+                }
+                if (" ".equals(jogo.getMapa()[i][j].getTexto())) {
+                    boxCartas.add(new Celula("./imagens/espacoporexplorar.png"));
+                }
+                boxCartas.revalidate();
+                boxCartas.repaint();
+            }
+        }
+
+    }
+
+    class Celula extends JPanel {
+
+        int position = 0;
+        private String path;
+        private Image img;
+
+        public Celula(String path) {
+            this.path = path;
+            img = (new Imagem(path)).createImage();
+        }
+
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+        }
+
+        public void setCelula(String path) {
+            this.path = path;
+        }
+    }
+
+    public class Imagem {
+
+        private String path;
+
+        public Imagem(String path) {
+            this.path = path;
+        }
+
+        protected ImageIcon createImageIcon() {
+            ClassLoader cl = this.getClass().getClassLoader();
+            java.net.URL imgURL = cl.getResource(path);
+            if (imgURL == null) {
+                return new ImageIcon(path);
+            } else {
+                System.out.println(" Nao encontrou o ficheiro: " + path);
+                return null;
+            }
+        }
+
+        protected Image createImage() {
+            return createImageIcon().getImage();
+        }
     }
 
     class ListenerDesistirJogo extends MouseAdapter {
@@ -366,8 +741,7 @@ class PainelJogo extends JPanel implements Observer {
         }
     }
     
-    
-    class ListenerRecomecar implements ActionListener { //listener do botão vender 
+    class ListenerRecomecar implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -472,7 +846,7 @@ class PainelJogo extends JPanel implements Observer {
                 boxCartas.removeAll();
                 estecimo.removeAll();
                 JLabel ganha = new JLabel();
-                ganha.setText("Ganhou");
+                ganha.setText("Ganhou !");
                 ganha.setForeground(Color.white);
                 ganha.setFont(new Font("Arial", Font.BOLD + Font.ITALIC, 60));
                 boxCartas.add(ganha);
@@ -565,6 +939,10 @@ class PainelJogo extends JPanel implements Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+    }
+
+    public JPanel getPainelFundo() {
+        return painelFundo;
     }
 }

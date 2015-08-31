@@ -35,14 +35,14 @@ public class EsperaMovimento extends Estado implements Serializable {
         x=J.jogador.getNave().getX();
         y=J.jogador.getNave().getY();
        
-        if (opcao == 0) {
+        if (opcao == 0) {                               
             Random rn = new Random();
             int x_rand, y_rand;
 
             do {
                 x_rand = rn.nextInt(9);
                 y_rand = rn.nextInt(7);
-            }while(y+1<7 && J.mapa[y_rand][x_rand].getCheck()==false && !"_".equals(J.mapa[y_rand][x_rand].getTexto()));
+            }while(J.mapa[y_rand][x_rand].getCheck()==true && !"_".equals(J.mapa[y_rand][x_rand].getTexto()));
             
             J.jogador.getNave().setY(y_rand);
             J.jogador.getNave().setX(x_rand);

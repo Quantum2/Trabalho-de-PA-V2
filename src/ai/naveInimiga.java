@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class naveInimiga implements Serializable {
 
-    int x, y, power;
+    int x, y, power, largada;
     ArrayList<Recs> cargo = new ArrayList();
 
     public naveInimiga(int i, int j) {
