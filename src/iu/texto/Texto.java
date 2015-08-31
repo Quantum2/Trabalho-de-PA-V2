@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import logicaJogo.EsperaCompra;
-import logicaJogo.EsperaMovimento;
 import logicaJogo.EsperaVenda;
 import logicaJogo.Jogo;
 
@@ -217,6 +215,21 @@ public class Texto implements Serializable {
         }
         mostraMapa();
 
+        if (!j.isSuborno()) {
+            if ("P".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto()) || "X".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto())) {
+                System.out.print("Quer subornar as autoridades ? 1 - Sim, 2 - Não\n");
+                do {
+                    opcao = sc.nextInt();
+                } while (opcao < 1 && opcao > 2);
+
+                if (opcao == 1) {
+                    j.setSuborno(true);
+                    System.out.println("Autoridades subornadas !");
+                }
+            }
+        }
+        mostraMapa();
+        
         if ("P".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto()) || "X".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto())) {
             if ("P".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto())) {
                 do {

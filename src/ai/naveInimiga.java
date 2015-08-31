@@ -5,9 +5,7 @@
  */
 package ai;
 
-import MW.Recs.Recs;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  *

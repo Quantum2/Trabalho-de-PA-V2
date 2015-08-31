@@ -30,6 +30,7 @@ public class Jogo extends Observable implements Serializable {
 
     Estado estado;
     Jogador jogador;
+    boolean suborno;
 
     int linhas = 7;
     int colunas = 9;
@@ -43,6 +44,7 @@ public class Jogo extends Observable implements Serializable {
     public Jogo() {
         estado = new EsperaInicio(this);
         jogador = new Jogador();
+        suborno = false;
     }
 
     public Estado getEstado() {
@@ -51,6 +53,17 @@ public class Jogo extends Observable implements Serializable {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public boolean isSuborno() {
+        return suborno;
+    }
+
+    public void setSuborno(boolean suborno) {
+        this.suborno = suborno;
+        
+        if(suborno == true)
+            this.jogador.setMoney(1);
     }
 
     int getRandomCusto() {
@@ -339,7 +352,11 @@ public class Jogo extends Observable implements Serializable {
                     
                 }
             }
-        }       
+        }   
+        
+        //Suborno
+        
+        
         setChanged();
         notifyObservers();
         return pirTexto;        
