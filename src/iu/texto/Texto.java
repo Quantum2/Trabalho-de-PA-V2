@@ -428,9 +428,9 @@ public class Texto implements Serializable {
                 }else {
                     if (j.getJogador().getNave().getX() == k && j.getJogador().getNave().getY() == i) {
                         System.out.print(j.getMapa()[i][k].getTexto() + "N ");
-                    } else if (j.getJogador().getEnemie().getX() == k && j.getJogador().getNave().getY() == i && j.getJogador().getNave().getX() == k && j.getJogador().getNave().getY() == i) {
+                    } else if (j.getJogador().getEnemie().getX() == k && j.getJogador().getEnemie().getY() == i && j.getJogador().getNave().getX() == k && j.getJogador().getNave().getY() == i) {
                         System.out.print(j.getMapa()[i][k].getTexto() + "Nn ");
-                    } else if (j.getJogador().getEnemie().getX() == k && j.getJogador().getNave().getY() == i) {
+                    } else if (j.getJogador().getEnemie().getX() == k && j.getJogador().getEnemie().getY() == i) {
                         System.out.print(j.getMapa()[i][k].getTexto() + "n ");
                     } else {
                         System.out.print(j.getMapa()[i][k].getTexto() + "  ");
