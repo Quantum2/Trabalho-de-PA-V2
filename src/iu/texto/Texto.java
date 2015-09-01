@@ -216,13 +216,23 @@ public class Texto implements Serializable {
         mostraMapa();
 
         if (!j.isSuborno()) {
+            int chooser_cargo;
+            
             if ("P".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto()) || "X".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto())) {
-                System.out.print("Quer subornar as autoridades ? 1 - Sim, 2 - Não\n");
+                System.out.println("Quer subornar as autoridades ? 1 - Sim, 2 - Não");
                 do {
                     opcao = sc.nextInt();
                 } while (opcao < 1 && opcao > 2);
 
                 if (opcao == 1) {
+                    System.out.println("Que recurso quer manter ?\n" + "1-" + j.getJogador().getNave().getCargo().get(0).getNome() + " 2-" + j.getJogador().getNave().getCargo().get(1).getNome() + " 3-" + j.getJogador().getNave().getCargo().get(2).getNome());
+                    
+                    do{
+                        chooser_cargo = sc.nextInt();
+                    }while(chooser_cargo <1 && chooser_cargo > 2);
+                    
+                    j.setEstado(j.getEstado().Vende(chooser_cargo));
+                    
                     j.setSuborno(true);
                     System.out.println("Autoridades subornadas !");
                 }

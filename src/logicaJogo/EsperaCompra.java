@@ -149,7 +149,21 @@ public class EsperaCompra extends Estado implements Serializable {
 
     @Override
     public Estado Vende(int escolhavenda) {
-        return this;
+        switch(escolhavenda){
+            case 1:
+                J.jogador.getNave().getCargo().set(1, new RecBranco());
+                J.jogador.getNave().getCargo().set(2, new RecBranco());
+                break;
+            case 2:
+                J.jogador.getNave().getCargo().set(0, new RecBranco());
+                J.jogador.getNave().getCargo().set(2, new RecBranco());
+                break;
+            case 3:
+                J.jogador.getNave().getCargo().set(0, new RecBranco());
+                J.jogador.getNave().getCargo().set(1, new RecBranco());
+                break;
+        }
+        return new EsperaCompra(this.J);
     }
 
     @Override
