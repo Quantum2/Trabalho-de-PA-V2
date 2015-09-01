@@ -240,12 +240,14 @@ class PainelJogo extends JPanel implements Observer {
 
         if (jogo.getEstado() instanceof EsperaMovimento) {
             nortecentro.add(Warp);
+            Warp.addActionListener(new ListenerWarp());
         }else{
             nortecentro.remove(Warp);
         }
         
-        if(jogo.getEstado() instanceof EsperaCompra){
+        if(jogo.getEstado() instanceof EsperaCompra && !jogo.isSuborno()){
             nortecentro.add(Subornar);
+            Subornar.addActionListener(new ListenerSuborno());
         }else{
             nortecentro.remove(Subornar);
         }
@@ -728,6 +730,18 @@ class PainelJogo extends JPanel implements Observer {
             return createImageIcon().getImage();
         }
     }
+    
+    class ListenerSuborno implements ActionListener {
+
+        public ListenerSuborno() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            jogo.setSuborno(true);
+            addComponents();
+        }
+    }
 
     class ListenerDesistirJogo extends MouseAdapter {
 
@@ -772,13 +786,24 @@ class PainelJogo extends JPanel implements Observer {
         }
     }
 
-    class ListenerGuardarJogo implements ActionListener { //listener do botão vender 
+    class ListenerGuardarJogo implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             Texto t = new Texto(jogo);
             t.gravar();
             Guardar.setText("Guardado");
+        }
+    }
+    
+    class ListenerWarp implements ActionListener {
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            jogo.setEstado(jogo.getEstado().Movimento(0, 0));
+            boxCartas.removeAll();
+            estecimo.removeAll();
+            addComponents();
         }
     }
 
