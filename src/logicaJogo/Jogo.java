@@ -362,6 +362,16 @@ public class Jogo extends Observable implements Serializable {
         return pirTexto;        
     }
     
+    public boolean perto() {
+        if ((jogador.nave.getX() - jogador.enemie.getX()) <= 1 && (jogador.nave.getX() - jogador.enemie.getX()) >= -1) {
+            return true;
+        }
+        if ((jogador.nave.getY() - jogador.enemie.getY()) <= 1 && (jogador.nave.getY() - jogador.enemie.getY()) >= -1) {
+            return true;
+        }else
+            return false;
+    }
+
     public Jogo Movimento(int opcao,int conta){
         estado = estado.Movimento(opcao,conta);
         setChanged();

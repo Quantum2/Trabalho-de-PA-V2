@@ -212,10 +212,10 @@ class PainelJogo extends JPanel implements Observer {
                     turno.setText("Fase Compra");
                     l3.setText("Precos:");
                     if ("P".equals(jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getTexto())) {
-                        l4.setText("Azul-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(0) + " Amarelo-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(1) + "Vermelho-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(2) + "Preto" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(3));
+                        l4.setText("Azul-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(0) + " Amarelo-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(1) + " Vermelho-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(2) + " Preto" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(3));
                     }
                     if ("X".equals(jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getTexto())) {
-                        l4.setText("Azul-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(0) + " Amarelo-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(1) + "Vermelho-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(2) + "Preto" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(3));
+                        l4.setText("Azul-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(0) + " Amarelo-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(1) + " Vermelho-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(2) + " Preto" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(3));
                     }
                     if (jogo.getJogador().getNave().getPower() != 5 && "Cinzento".equals(jogo.getJogador().getNave().getCargo().get(2).getNome())) {
                         Upgrade.addMouseListener(new ListenerUpgrade());
@@ -455,8 +455,7 @@ class PainelJogo extends JPanel implements Observer {
                             nave.setPreferredSize(new Dimension(45, 35));
                             cl.add(nave);
                             boxCartas.add(cl);
-                        } else {
-
+                        }else {
                             Celula cl = new Celula("./imagens/EspacoExplorado.png");
                             if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i + 1) {
 
@@ -517,9 +516,18 @@ class PainelJogo extends JPanel implements Observer {
 
                                 }
                             }
+                            
+                            if (jogo.getJogador().getEnemie().getX() == j && jogo.getJogador().getEnemie().getY() == i) {
+                                Celula nave = new Celula("./imagens/nave2.png");
+                                nave.setPreferredSize(new Dimension(45, 35));
+                                cl.add(nave);
+                            }
+                            
                             cl.addMouseListener(new ListenerMovimento(cl.position, 0));
                             boxCartas.add(cl);
                         }
+                        
+                        
                     }
                 }
                 if ("P".equals(jogo.getMapa()[i][j].getTexto())) {
@@ -739,6 +747,10 @@ class PainelJogo extends JPanel implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             jogo.setSuborno(true);
+            JOptionPane.showConfirmDialog(null, "Autoridades subornadas até ao fim do jogo", "Confirmar", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
+            
+            boxCartas.removeAll();
+            estecimo.removeAll();
             addComponents();
         }
     }
@@ -857,7 +869,7 @@ class PainelJogo extends JPanel implements Observer {
                 Opcao_2.setText(jogo.getJogador().getNave().getCargo().get(1).getNome());
                 Opcao_1.addMouseListener(new ListenerOpcaoVende(0));
                 Opcao_2.addMouseListener(new ListenerOpcaoVende(1));
-                if (jogo.getJogador().getNave().getCargo().get(2).getNome() == "Cinzento") {
+                if ("Cinzento".equals(jogo.getJogador().getNave().getCargo().get(2).getNome())) {
                     Opcao_3.setVisible(true);
                     Opcao_3.setText(jogo.getJogador().getNave().getCargo().get(2).getNome());
                     Opcao_1.addMouseListener(new ListenerOpcaoVende(2));
