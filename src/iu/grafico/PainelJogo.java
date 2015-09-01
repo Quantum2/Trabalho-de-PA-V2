@@ -47,17 +47,19 @@ class PainelJogo extends JPanel implements Observer {
 
     Jogo jogo;
     int t=0;
-    private JButton Upgrade = new JButton("Upgrade");
-    private JButton Compra = new JButton("Compra");
-    private JButton Vender = new JButton("Vender");
-    private JButton Opcao_1 = new JButton("Opcao 1");
-    private JButton Opcao_2 = new JButton("Opcao 2");
-    private JButton Opcao_3 = new JButton("Opcao 3");
-    private JButton Opcao_4 = new JButton("Opcao 4");
-    private JButton Guardar = new JButton("Guardar Jogo");
-    private JButton turno = new JButton("Terminar Turno");
-    private JButton Desistir = new JButton("Desistir");
-    private JButton Recomecar = new JButton("Recomecar");
+    private final JButton Upgrade = new JButton("Upgrade");
+    private final JButton Compra = new JButton("Compra");
+    private final JButton Vender = new JButton("Vender");
+    private final JButton Opcao_1 = new JButton("Opcao 1");
+    private final JButton Opcao_2 = new JButton("Opcao 2");
+    private final JButton Opcao_3 = new JButton("Opcao 3");
+    private final JButton Opcao_4 = new JButton("Opcao 4");
+    private final JButton Guardar = new JButton("Guardar Jogo");
+    private final JButton turno = new JButton("Terminar Turno");
+    private final JButton Desistir = new JButton("Desistir");
+    private final JButton Recomecar = new JButton("Recomecar");
+    private final JButton Warp = new JButton("Warp !");
+    private final JButton Subornar = new JButton("Subornar");
     JPanel fundo = new JPanel(new BorderLayout()), oeste = new JPanel();
     JPanel este = new JPanel(new BorderLayout());
     JPanel norte = new JPanel(new BorderLayout());
@@ -198,7 +200,7 @@ class PainelJogo extends JPanel implements Observer {
                 fundo.add(Vender);
                 fundo.add(Opcao_1);
                 fundo.add(Opcao_2);
-                if (jogo.getJogador().getNave().getCargo().get(2).getNome() == "Cinzento") {
+                if ("Cinzento".equals(jogo.getJogador().getNave().getCargo().get(2).getNome())) {
                     Opcao_3.addMouseListener(null);
                     fundo.add(Opcao_3);
                 }
@@ -235,6 +237,19 @@ class PainelJogo extends JPanel implements Observer {
         nortecentro.add(Guardar);
         Guardar.addActionListener(new ListenerGuardarJogo());
         nortecentro.add(turno);
+
+        if (jogo.getEstado() instanceof EsperaMovimento) {
+            nortecentro.add(Warp);
+        }else{
+            nortecentro.remove(Warp);
+        }
+        
+        if(jogo.getEstado() instanceof EsperaCompra){
+            nortecentro.add(Subornar);
+        }else{
+            nortecentro.remove(Subornar);
+        }
+
         nortecentro.add(Desistir);
         nortecentro.add(Recomecar);
 
@@ -442,7 +457,7 @@ class PainelJogo extends JPanel implements Observer {
 
                             Celula cl = new Celula("./imagens/EspacoExplorado.png");
                             if (jogo.getJogador().getNave().getX() == j + 1 && jogo.getJogador().getNave().getY() == i + 1) {
-                                //cl.position = 7;
+
                                 cl.position = 8;
 
                             } else {
@@ -561,7 +576,7 @@ class PainelJogo extends JPanel implements Observer {
 
                                                         if (jogo.getJogador().getNave().getX() == j - 1 && jogo.getJogador().getNave().getY() == i - 1) {
 
-                                                            //cl.position = 6;
+
                                                             cl.position = 5;
 
                                                         }

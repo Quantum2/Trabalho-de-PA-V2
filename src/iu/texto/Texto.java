@@ -226,9 +226,9 @@ public class Texto implements Serializable {
                     j.setSuborno(true);
                     System.out.println("Autoridades subornadas !");
                 }
+                mostraMapa();
             }
         }
-        mostraMapa();
         
         if ("P".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto()) || "X".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto())) {
             if ("P".equals(j.getMapa()[j.getJogador().getNave().getY()][j.getJogador().getNave().getX()].getTexto())) {
