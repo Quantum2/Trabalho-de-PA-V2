@@ -149,6 +149,7 @@ public class EsperaCompra extends Estado implements Serializable {
 
     @Override
     public Estado Vende(int escolhavenda) {
+        //Este vende é para subornos
         switch(escolhavenda){
             case 1:
                 J.jogador.getNave().getCargo().set(1, new RecBranco());

@@ -212,10 +212,10 @@ class PainelJogo extends JPanel implements Observer {
                     turno.setText("Fase Compra");
                     l3.setText("Precos:");
                     if ("P".equals(jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getTexto())) {
-                        l4.setText("Azul-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(0) + " Amarelo-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(1) + " Vermelho-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(2) + " Preto" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(3));
+                        l4.setText("Azul-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(0) + " Amarelo-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(1) + " Vermelho-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(2) + " Preto-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(3));
                     }
                     if ("X".equals(jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getTexto())) {
-                        l4.setText("Azul-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(0) + " Amarelo-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(1) + " Vermelho-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(2) + " Preto" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(3));
+                        l4.setText("Azul-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(0) + " Amarelo-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(1) + " Vermelho-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(2) + " Preto-" + jogo.getMapa()[jogo.getJogador().getNave().getY()][jogo.getJogador().getNave().getX()].getCusto().get(3));
                     }
                     if (jogo.getJogador().getNave().getPower() != 5 && "Cinzento".equals(jogo.getJogador().getNave().getCargo().get(2).getNome())) {
                         Upgrade.addMouseListener(new ListenerUpgrade());
@@ -767,8 +767,20 @@ class PainelJogo extends JPanel implements Observer {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            jogo.setSuborno(true);
-            JOptionPane.showConfirmDialog(null, "Autoridades subornadas até ao fim do jogo", "Confirmar", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
+            String carga_a_manter;
+            int num_carga;
+            
+            carga_a_manter = JOptionPane.showInputDialog("Qual a carga a manter ?\n" + "1- " + jogo.getJogador().getNave().getCargo().get(0).getNome() + " 2- " + jogo.getJogador().getNave().getCargo().get(1).getNome() + " 3- " + jogo.getJogador().getNave().getCargo().get(2).getNome());
+            num_carga = Integer.parseInt(carga_a_manter);
+            
+            if (num_carga >= 1 && num_carga <= 3 && !jogo.isSuborno()) {
+                jogo.setEstado(jogo.getEstado().Vende(num_carga));
+                jogo.setSuborno(true);
+                JOptionPane.showConfirmDialog(null, "Autoridades subornadas até ao fim do jogo", "Sucesso !", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
+            }else{
+                jogo.setSuborno(false);
+                JOptionPane.showConfirmDialog(null, "Carga inválida, autoridades não subornadas", "Erro !", JOptionPane.WARNING_MESSAGE, JOptionPane.OK_OPTION);
+            }
             
             boxCartas.removeAll();
             estecimo.removeAll();
