@@ -355,7 +355,13 @@ public class Jogo extends Observable implements Serializable {
         }   
         
         //Suborno
-        
+        if (suborno) {
+            if (jogador.getMoney() / 2 > 2) {
+                jogador.setMoney(jogador.getMoney() / 2);
+            } else {
+                jogador.setMoney(jogador.getMoney() - 2);
+            }
+        }
         
         setChanged();
         notifyObservers();
