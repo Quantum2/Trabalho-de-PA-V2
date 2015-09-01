@@ -439,6 +439,13 @@ class PainelJogo extends JPanel implements Observer {
 
                                 }
                             }
+                            
+                            if (jogo.getJogador().getEnemie().getX() == j && jogo.getJogador().getEnemie().getY() == i) {
+                                Celula nave = new Celula("./imagens/nave2.png");
+                                nave.setPreferredSize(new Dimension(45, 35));
+                                cl.add(nave);
+                            }
+                            
                             cl.addMouseListener(new ListenerMovimento(cl.position, conta));
                             boxCartas.add(cl);
                         }
@@ -602,6 +609,13 @@ class PainelJogo extends JPanel implements Observer {
 
                                 }
                             }
+                            
+                            if (jogo.getJogador().getEnemie().getX() == j && jogo.getJogador().getEnemie().getY() == i) {
+                                Celula nave = new Celula("./imagens/nave2.png");
+                                nave.setPreferredSize(new Dimension(45, 35));
+                                cl.add(nave);
+                            }
+                            
                             cl.addMouseListener(new ListenerMovimento(cl.position, 0));
                             boxCartas.add(cl);
                         }
@@ -678,6 +692,13 @@ class PainelJogo extends JPanel implements Observer {
 
                                 }
                             }
+                            
+                            if (jogo.getJogador().getEnemie().getX() == j && jogo.getJogador().getEnemie().getY() == i) {
+                                Celula nave = new Celula("./imagens/nave2.png");
+                                nave.setPreferredSize(new Dimension(45, 35));
+                                cl.add(nave);
+                            }
+                            
                             cl.addMouseListener(new ListenerMovimento(cl.position, 0));
                             boxCartas.add(cl);
                         }
