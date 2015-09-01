@@ -38,6 +38,13 @@ public class EsperaCompra extends Estado implements Serializable {
         int y = J.jogador.getNave().getY();
         
         int temp_old = J.jogador.getMoney();
+        int prejuizo_nave_near;
+        
+        if(J.perto()){
+            prejuizo_nave_near = -1;
+        }else{
+            prejuizo_nave_near = 0;
+        }
 
         if ("P".equals(J.mapa[y][x].getTexto())) {
             if (!"Branco".equals(J.mapa[y][x].getRecursos().get(escolhacompra).getNome())) {
@@ -130,10 +137,6 @@ public class EsperaCompra extends Estado implements Serializable {
                     }
                 }
             }
-        }
-        
-        if(temp_old != J.jogador.getMoney() && J.isSuborno()){
-            J.jogador.setMoney(((J.jogador.getMoney() - temp_old) * 2) + J.jogador.getMoney());
         }
 
         return new EsperaCompra(this.J);

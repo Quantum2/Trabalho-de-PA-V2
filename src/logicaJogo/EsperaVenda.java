@@ -23,6 +23,15 @@ public class EsperaVenda extends Estado implements Serializable {
     public Estado Vende(int escolhavenda) {
         int x = J.jogador.getNave().getX();
         int y = J.jogador.getNave().getY();
+        
+        int temp_old = J.jogador.getMoney();
+        int custo_nave_near;
+        
+        if(J.perto()){
+            custo_nave_near = 1;
+        }else{
+            custo_nave_near = 0;
+        }
 
         if ("P".equals(J.mapa[y][x].getTexto())) {
             if (!"Branco".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome()) && !"Cinzento".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
@@ -99,6 +108,10 @@ public class EsperaVenda extends Estado implements Serializable {
                 }
                 J.jogador.getNave().getCargo().set(escolhavenda, new RecBranco());
             }
+        }
+        
+        if(temp_old != J.jogador.getMoney() && J.isSuborno()){
+            J.jogador.setMoney(((J.jogador.getMoney() - temp_old) * 2) + J.jogador.getMoney());
         }
 
         return new EsperaVenda(this.J);
