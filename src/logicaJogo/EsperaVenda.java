@@ -37,16 +37,16 @@ public class EsperaVenda extends Estado implements Serializable {
             if (!"Branco".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome()) && !"Cinzento".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
                 if (!"Branco".equals(J.mapa[y][x].getRecursos().get(0).getNome())) {
                     if ("Azul".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                        J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(0));
+                        J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(0) - custo_nave_near);
                     } else {
                         if ("Amarelo".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                            J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(1));
+                            J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(1) - custo_nave_near);
                         } else {
                             if ("Vermelho".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                                J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(2));
+                                J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(2) - custo_nave_near);
                             } else {
                                 if ("Preto".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                                    J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(3));
+                                    J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(3) - custo_nave_near);
                                 }
                             }
                         }
@@ -60,16 +60,16 @@ public class EsperaVenda extends Estado implements Serializable {
                 } else {
                     if (!"Branco".equals(J.mapa[y][x].getRecursos().get(1).getNome())) {
                         if ("Azul".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                            J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(0));
+                            J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(0) - custo_nave_near);
                         } else {
                             if ("Amarelo".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                                J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(1));
+                                J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(1) - custo_nave_near);
                             } else {
                                 if ("Vermelho".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                                    J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(2));
+                                    J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(2) - custo_nave_near);
                                 } else {
                                     if ("Preto".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                                        J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(3));
+                                        J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(3) - custo_nave_near);
                                     }
                                 }
                             }
@@ -92,16 +92,16 @@ public class EsperaVenda extends Estado implements Serializable {
         if ("X".equals(J.mapa[y][x].getTexto())) {
             if (!"Branco".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome()) && !"Cinzento".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
                 if ("Azul".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                    J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(0));
+                    J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(0) - custo_nave_near);
                 } else {
                     if ("Amarelo".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                        J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(1));
+                        J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(1) - custo_nave_near);
                     } else {
                         if ("Vermelho".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                            J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(2));
+                            J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(2) - custo_nave_near);
                         } else {
                             if ("Preto".equals(J.jogador.getNave().getCargo().get(escolhavenda).getNome())) {
-                                J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(3));
+                                J.jogador.setMoney(J.jogador.getMoney() + J.mapa[y][x].getCusto().get(3) - custo_nave_near);
                             }
                         }
                     }
