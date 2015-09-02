@@ -773,7 +773,7 @@ class PainelJogo extends JPanel implements Observer {
             carga_a_manter = JOptionPane.showInputDialog("Qual a carga a manter ?\n" + "1- " + jogo.getJogador().getNave().getCargo().get(0).getNome() + " 2- " + jogo.getJogador().getNave().getCargo().get(1).getNome() + " 3- " + jogo.getJogador().getNave().getCargo().get(2).getNome());
             num_carga = Integer.parseInt(carga_a_manter);
             
-            if (num_carga >= 1 && num_carga <= 3 && !jogo.isSuborno()) {
+            if (num_carga >= 1 && num_carga < 4 && !jogo.isSuborno()) {
                 jogo.setEstado(jogo.getEstado().Vende(num_carga));
                 jogo.setSuborno(true);
                 JOptionPane.showConfirmDialog(null, "Autoridades subornadas até ao fim do jogo", "Sucesso !", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
